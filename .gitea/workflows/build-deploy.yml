@@ -21,13 +21,9 @@ jobs:
             --file Dockerfile \
             --build-arg NEXT_PUBLIC_APP_URL="${{ vars.NEXT_PUBLIC_APP_URL }}" \
             --build-arg NEXT_PUBLIC_APP_NAME="${{ vars.NEXT_PUBLIC_APP_NAME }}" \
-            --tag "${IMAGE_NAME}:latest" \
+            --tag "${REGISTRY}/${IMAGE_NAME}:${{ gitea.sha }}" \
+            --tag "${REGISTRY}/${IMAGE_NAME}:latest" \
             .
-
-      - name: Tag Docker images
-        run: |
-          docker tag "${IMAGE_NAME}:latest" "${REGISTRY}/${IMAGE_NAME}:${{ gitea.sha }}"
-          docker tag "${IMAGE_NAME}:latest" "${REGISTRY}/${IMAGE_NAME}:latest"
 
       - name: Push Docker images
         run: |
