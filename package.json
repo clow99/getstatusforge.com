@@ -1,0 +1,19 @@
+{
+  "name": "statusforge-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm -w packages/statusforge run build && npm -w apps/demo run build",
+    "test": "npm -w packages/statusforge run test",
+    "lint": "npm -w packages/statusforge run lint && npm -w apps/demo run lint",
+    "typecheck": "npm -w packages/statusforge run typecheck && npm -w apps/demo run typecheck",
+    "dev": "concurrently \"npm -w packages/statusforge run build:watch\" \"npm -w apps/demo run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
