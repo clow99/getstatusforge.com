@@ -345,6 +345,9 @@ export default function HomePage() {
           <a className="header-nav-link" href="#playground">
             Playground
           </a>
+          <a className="header-nav-link" href="/docs">
+            Docs
+          </a>
         </nav>
         <div className="header-actions">
           <a
@@ -395,7 +398,7 @@ export default function HomePage() {
 
         <section className="section features-grid">
           {FEATURE_ITEMS.map((item) => (
-            <Card key={item.title} variant="shadow" hoverable>
+            <Card key={item.title} variant="bordered" hoverable>
               <Card.Header>
                 <Title level="h3" size="lg">
                   {item.title}
@@ -551,18 +554,48 @@ export default function HomePage() {
             <Card.Body>
               <div className="cta-row">
                 <code className="install-command">npm install statusforge</code>
-                <a
-                  href="https://github.com/clow99/getstatusforge.com"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Button variant="primary">View on GitHub</Button>
-                </a>
+                <div className="cta-buttons">
+                  <a href="/docs">
+                    <Button variant="primary">Read the Docs</Button>
+                  </a>
+                  <a
+                    href="https://github.com/clow99/getstatusforge.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Button variant="outline">View on GitHub</Button>
+                  </a>
+                </div>
               </div>
             </Card.Body>
           </Card>
         </section>
       </main>
+
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <Image src="/logo.png" alt="StatusForge logo" width={24} height={24} />
+            <span>StatusForge</span>
+          </div>
+          <nav className="footer-links">
+            <a href="/docs">Docs</a>
+            <a href="/docs/api">API</a>
+            <a href="/docs/adapters">Adapters</a>
+            <a href="https://www.npmjs.com/package/statusforge" target="_blank" rel="noreferrer">
+              npm
+            </a>
+            <a
+              href="https://github.com/clow99/getstatusforge.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+          </nav>
+          <p className="footer-copy">MIT License</p>
+        </div>
+      </footer>
     </>
   );
 }
