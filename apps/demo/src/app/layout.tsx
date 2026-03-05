@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import "@velocityuikit/velocityui/dist/style.css";
 import "./globals.css";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "getstatusforge.com demo",
+  title: "StatusForge - Error Normalization",
   description: "Interactive playground for normalizing HTTP and transport errors."
 };
 
@@ -13,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

@@ -1,5 +1,5 @@
 {
-  "name": "statusforge",
+  "name": "@npmforge/statusforge",
   "version": "0.1.0",
   "description": "Normalize HTTP and transport errors into actionable JSON.",
   "license": "MIT",
@@ -17,6 +17,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "build:watch": "tsup --watch",

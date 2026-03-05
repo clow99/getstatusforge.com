@@ -1,0 +1,74 @@
+name: Publish statusforge to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    env:
+      GH_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@${{ github.repository_owner }}'
+
+      - name: Verify auth token exists
+        run: |
+          if [ -z "$GH_PACKAGES_TOKEN" ]; then
+            echo "No package token available."
+            exit 1
+          fi
+
+      - name: Verify npm auth
+        run: npm whoami --registry https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ env.GH_PACKAGES_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm -w packages/statusforge run build
+
+      - name: Normalize scope to repository owner
+        working-directory: packages/statusforge
+        run: |
+          OWNER_SCOPE="@${{ github.repository_owner }}"
+          PACKAGE_BASENAME=$(node -p "JSON.parse(require('fs').readFileSync('./package.json','utf8')).name.replace(/^@[^/]+\\//, '')")
+          TARGET_PACKAGE_NAME="${OWNER_SCOPE}/${PACKAGE_BASENAME}"
+          npm pkg set name="$TARGET_PACKAGE_NAME"
+          echo "Publishing package as $TARGET_PACKAGE_NAME"
+
+      - name: Check if version already published
+        id: version_check
+        working-directory: packages/statusforge
+        run: |
+          PACKAGE_NAME=$(node -p "JSON.parse(require('fs').readFileSync('./package.json','utf8')).name")
+          VERSION=$(node -p "JSON.parse(require('fs').readFileSync('./package.json','utf8')).version")
+          echo "package_name=$PACKAGE_NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if npm view "$PACKAGE_NAME@$VERSION" --registry https://npm.pkg.github.com 2>/dev/null; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ env.GH_PACKAGES_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        if: steps.version_check.outputs.already_published == 'false'
+        working-directory: packages/statusforge
+        run: npm publish --registry https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ env.GH_PACKAGES_TOKEN }}
