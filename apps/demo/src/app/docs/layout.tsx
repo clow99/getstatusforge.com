@@ -36,7 +36,7 @@ const SIDEBAR: SidebarSection[] = [
     heading: "Links",
     links: [
       { label: "Playground", href: "/#playground" },
-      { label: "npm", href: "https://www.npmjs.com/package/statusforge" },
+      { label: "npm", href: "https://www.npmjs.com/package/@npmforge/statusforge" },
       { label: "GitHub", href: "https://github.com/clow99/getstatusforge.com" }
     ]
   }
@@ -68,12 +68,12 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
         </nav>
         <div className="header-actions">
           <a
-            href="https://www.npmjs.com/package/statusforge"
+            href="https://www.npmjs.com/package/@npmforge/statusforge"
             target="_blank"
             rel="noreferrer"
             className="header-npm"
           >
-            npm install statusforge
+            npm i @npmforge/statusforge
           </a>
           <a href="https://github.com/clow99/getstatusforge.com" target="_blank" rel="noreferrer">
             <Button variant="outline" size="sm">

@@ -18,26 +18,26 @@ const INSTALL_TABS = [
     value: "npm",
     label: "npm",
     children: (
-      <pre>npm install statusforge</pre>
+      <pre>npm i @npmforge/statusforge</pre>
     )
   },
   {
     value: "yarn",
     label: "yarn",
     children: (
-      <pre>yarn add statusforge</pre>
+      <pre>yarn add @npmforge/statusforge</pre>
     )
   },
   {
     value: "pnpm",
     label: "pnpm",
     children: (
-      <pre>pnpm add statusforge</pre>
+      <pre>pnpm add @npmforge/statusforge</pre>
     )
   }
 ];
 
-const BASIC_USAGE = `import { normalizeError } from "statusforge";
+const BASIC_USAGE = `import { normalizeError } from "@npmforge/statusforge";
 
 try {
   const res = await fetch("/api/data");
@@ -49,7 +49,7 @@ try {
   if (retryable) scheduleRetry();
 }`;
 
-const RETRY_EXAMPLE = `import { normalizeError } from "statusforge";
+const RETRY_EXAMPLE = `import { normalizeError } from "@npmforge/statusforge";
 
 async function fetchWithRetry(url: string, attempts = 3) {
   for (let i = 0; i < attempts; i++) {
@@ -67,7 +67,7 @@ async function fetchWithRetry(url: string, attempts = 3) {
   }
 }`;
 
-const LOGGING_EXAMPLE = `import { normalizeError } from "statusforge";
+const LOGGING_EXAMPLE = `import { normalizeError } from "@npmforge/statusforge";
 
 function logError(err: unknown) {
   const { code, message, status, details } = normalizeError(err);

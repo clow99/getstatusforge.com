@@ -21,7 +21,7 @@ const CUSTOM_CHAIN_CODE = `import {
   axiosAdapter,
   fetchAdapter,
   genericAdapter
-} from "statusforge";
+} from "@npmforge/statusforge";
 
 // Only keep adapters you need, in your preferred order
 const result = normalizeError(error, {

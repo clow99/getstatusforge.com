@@ -172,7 +172,7 @@ try {
 }`;
 
 const AFTER_CODE = `// Clean: one function, every client
-import { normalizeError } from "statusforge";
+import { normalizeError } from "@npmforge/statusforge";
 
 try {
   await axios.get("/api/data");
@@ -351,12 +351,12 @@ export default function HomePage() {
         </nav>
         <div className="header-actions">
           <a
-            href="https://www.npmjs.com/package/statusforge"
+            href="https://www.npmjs.com/package/@npmforge/statusforge"
             target="_blank"
             rel="noreferrer"
             className="header-npm"
           >
-            npm install statusforge
+            npm i @npmforge/statusforge
           </a>
           <a href="https://github.com/clow99/getstatusforge.com" target="_blank" rel="noreferrer">
             <Button variant="outline" size="sm">
@@ -388,9 +388,9 @@ export default function HomePage() {
                 Try the playground
               </Button>
             </a>
-            <a href="https://www.npmjs.com/package/statusforge" target="_blank" rel="noreferrer">
+            <a href="https://www.npmjs.com/package/@npmforge/statusforge" target="_blank" rel="noreferrer">
               <Button variant="outline" size="md">
-                npm install statusforge
+                npm i @npmforge/statusforge
               </Button>
             </a>
           </div>
@@ -553,7 +553,7 @@ export default function HomePage() {
             </Card.Header>
             <Card.Body>
               <div className="cta-row">
-                <code className="install-command">npm install statusforge</code>
+                <code className="install-command">npm i @npmforge/statusforge</code>
                 <div className="cta-buttons">
                   <a href="/docs">
                     <Button variant="primary">Read the Docs</Button>
@@ -582,7 +582,7 @@ export default function HomePage() {
             <a href="/docs">Docs</a>
             <a href="/docs/api">API</a>
             <a href="/docs/adapters">Adapters</a>
-            <a href="https://www.npmjs.com/package/statusforge" target="_blank" rel="noreferrer">
+            <a href="https://www.npmjs.com/package/@npmforge/statusforge" target="_blank" rel="noreferrer">
               npm
             </a>
             <a

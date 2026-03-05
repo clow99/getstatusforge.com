@@ -40,7 +40,7 @@ const CUSTOM_ADAPTER_EXAMPLE = `import {
   axiosAdapter,
   genericAdapter,
   type ErrorAdapter
-} from "statusforge";
+} from "@npmforge/statusforge";
 
 const stripeAdapter: ErrorAdapter = {
   name: "stripe",

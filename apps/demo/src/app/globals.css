@@ -157,6 +157,7 @@ main {
 
 .hero h1 {
   margin: 0;
+  padding-bottom: 0.1em;
 }
 
 .lead {
